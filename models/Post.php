@@ -15,9 +15,9 @@ class Post {
     public $title;
     public $start_date;
     public $end_date;
-    
 
-    //Constructor with BD
+
+    //Constructor with DB
     public function __construct($db) {
         $this->conn = $db;
     }
@@ -55,11 +55,11 @@ class Post {
     }
 
     //Create post
-    public function create($table, $type, $place, $title, $description, $start_date, $end_date) { 
+    public function create($table, $place, $title, $description, $start_date, $end_date) { 
 
         //create query
-        $query = "INSERT INTO $table (type, place, title, description, start_date, end_date) VALUES
-        ('$type', '$place', '$title', '$description', '$start_date', '$end_date')";
+        $query = "INSERT INTO $table (place, title, description, start_date, end_date) VALUES
+        ('$place', '$title', '$description', '$start_date', '$end_date')";
 
             //Prepare statement
             $stmt = $this->conn->prepare($query);

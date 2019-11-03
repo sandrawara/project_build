@@ -4,11 +4,9 @@
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: PUT');
-  //header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type,
-  //Access-Control-Allow-Methods, Authorization, X-Requested-with');
-  
-  include_once '../../config/Database.php';
-  include_once '../../models/Post.php';
+
+  include_once 'Database.php';
+  include_once 'Post.php';
   
   // Instantiate DB & connect
   $database = new Database;
@@ -33,8 +31,8 @@
   //update post
   if($post->update($table, $id, $type, $place, $title, $description, $start_date, $end_date)) {
       echo 
-          'Successfully updated';
+          '<p>Successfully updated</p>';
   } else {
       echo
-        'Error: No post was updated';
+        '<p>Error: No post was updated</p>';
   }

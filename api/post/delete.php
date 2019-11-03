@@ -4,11 +4,9 @@
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: DELETE');
-  //header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type,
-  //Access-Control-Allow-Methods, Authorization, X-Requested-with');
-  
-  include_once '../../config/Database.php';
-  include_once '../../models/Post.php';
+
+  include_once 'Database.php';
+  include_once 'Post.php';
   
   // Instantiate DB & connect
   $database = new Database;
@@ -21,14 +19,14 @@
   $data = json_decode(file_get_contents("php://input"),true);
   
           //Set properties
-          $table = $data['table'];
+          $type = $data['table'];
           $id = $data['id']; 
 
   //delete post
-  if($post->delete($table, $id)) {
+  if($post->delete($type, $id)) {
       echo 
-          'Successfully deleted';
+          '<p>Successfully deleted</p>';
   } else {
       echo
-        'Error: post could not be deleted';
+        '<p>Error: post could not be deleted</p>';
   }

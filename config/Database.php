@@ -8,6 +8,11 @@ class Database {
     private $password = 'dowNthEh!ll';
     private $conn;
 
+     //DB login
+     public $user;
+     public $pass;
+     
+
     //DB Connect
     public function connect() {
         $this->conn = null;
@@ -21,6 +26,36 @@ class Database {
         }
 
         return $this->conn;
+    } 
+
+     //Login
+     public function loginUser($user, $pass) { 
+
+        $query = "SELECT password FROM users WHERE username = '$user'"; 
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        $usera = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $count = $stmt->rowCount(); 
+
+        if($count > 0) { 
+            $storedpassword = $usera['password'];
+
+            //Crypt password
+            if($storedpassword == 'admin'){
+                
+                $_SESSION['username'] = $user;
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
 

@@ -7,8 +7,8 @@
   //header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type,
   //Access-Control-Allow-Methods, Authorization, X-Requested-with');
   
-  include_once '../../config/Database.php';
-  include_once '../../models/Post.php';
+  include_once 'Database.php';
+  include_once 'Post.php';
   
   // Instantiate DB & connect
   $database = new Database;
@@ -22,7 +22,6 @@
   
           //Set properties
           $table = $data['table'];
-          $type = $data['type'];
           $place = $data['place'];
           $title = $data['title'];
           $description = $data['description'];
@@ -30,7 +29,7 @@
           $end_date = $data['end_date'];  
 
   //Create post
-  if($post->create($table, $type, $place, $title, $description, $start_date, $end_date)) {
+  if($post->create($table, $place, $title, $description, $start_date, $end_date)) {
       echo 
           'Successfully created';
   } else {
